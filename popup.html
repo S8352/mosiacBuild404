@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 400px;
+      min-height: 500px;
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+    
+    .tagline {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    .tab-container {
+      display: flex;
+      background: white;
+      border-radius: 8px;
+      padding: 4px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .tab {
+      flex: 1;
+      padding: 8px 12px;
+      text-align: center;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .tab.active {
+      background: #2563eb;
+      color: white;
+    }
+    
+    .tab:not(.active) {
+      color: #64748b;
+    }
+    
+    .tab:not(.active):hover {
+      background: #f1f5f9;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .profile-score {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .score-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .score-label {
+      font-weight: 600;
+      color: #1e293b;
+    }
+    
+    .score-value {
+      font-size: 18px;
+      font-weight: bold;
+      color: #059669;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      transition: width 0.3s ease;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+    }
+    
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+    
+    .btn-secondary:hover {
+      background: #f9fafb;
+    }
+    
+    .job-card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .job-title {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+    
+    .job-company {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    
+    .fit-score {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .fit-high {
+      background: #dcfce7;
+      color: #166534;
+    }
+    
+    .fit-medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    
+    .fit-low {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .upload-area {
+      border: 2px dashed #d1d5db;
+      border-radius: 8px;
+      padding: 32px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .upload-area:hover {
+      border-color: #2563eb;
+      background: #f8fafc;
+    }
+    
+    .upload-icon {
+      font-size: 32px;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+    
+    .upload-text {
+      color: #6b7280;
+      font-size: 14px;
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+    }
+    
+    .status-applied {
+      background: #3b82f6;
+    }
+    
+    .status-interview {
+      background: #10b981;
+    }
+    
+    .status-rejected {
+      background: #ef4444;
+    }
+    
+    .status-pending {
+      background: #f59e0b;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">Job Copilot</div>
+    <div class="tagline">AI-powered job application assistant</div>
+  </div>
+
+  <div class="tab-container">
+    <div class="tab active" data-tab="profile">Profile</div>
+    <div class="tab" data-tab="jobs">Jobs</div>
+    <div class="tab" data-tab="tracker">Tracker</div>
+  </div>
+
+  <!-- Profile Tab -->
+  <div id="profile-tab" class="tab-content active">
+    <div class="profile-score">
+      <div class="score-header">
+        <span class="score-label">Profile Completeness</span>
+        <span class="score-value" id="profile-score">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div id="upload-section">
+      <div class="upload-area" id="upload-area">
+        <div class="upload-icon">📄</div>
+        <div class="upload-text">
+          <strong>Upload your CV/Resume</strong><br>
+          PDF or DOCX format
+        </div>
+        <input type="file" id="cv-upload" accept=".pdf,.docx" class="hidden">
+      </div>
+      <button class="btn btn-secondary" id="manual-entry-btn">Enter Details Manually</button>
+    </div>
+
+    <div id="profile-form" class="hidden">
+      <div class="form-group">
+        <label class="form-label">Full Name *</label>
+        <input type="text" class="form-input" id="full-name" placeholder="John Doe">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Email *</label>
+        <input type="email" class="form-input" id="email" placeholder="john@example.com">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Phone Number *</label>
+        <input type="tel" class="form-input" id="phone" placeholder="+1 (555) 123-4567">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Current Location *</label>
+        <input type="text" class="form-input" id="location" placeholder="San Francisco, CA">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Professional Headline *</label>
+        <input type="text" class="form-input" id="headline" placeholder="Senior Software Engineer">
+      </div>
+      
+      <button class="btn btn-primary" id="save-profile-btn">Save Profile</button>
+      <button class="btn btn-secondary" id="edit-profile-btn" style="display: none;">Edit Profile</button>
+    </div>
+  </div>
+
+  <!-- Jobs Tab -->
+  <div id="jobs-tab" class="tab-content">
+    <div id="no-job-detected" class="job-card">
+      <div style="text-align: center; color: #6b7280;">
+        <div style="font-size: 32px; margin-bottom: 12px;">🔍</div>
+        <div style="font-weight: 600; margin-bottom: 8px;">No Job Detected</div>
+        <div style="font-size: 14px;">Navigate to a LinkedIn Easy Apply job to get started</div>
+      </div>
+    </div>
+
+    <div id="job-detected" class="hidden">
+      <div class="job-card">
+        <div class="job-title" id="detected-job-title">Software Engineer</div>
+        <div class="job-company" id="detected-job-company">Google</div>
+        <div style="margin-bottom: 12px;">
+          <span class="fit-score fit-high" id="fit-score">High Fit</span>
+        </div>
+        <button class="btn btn-primary" id="generate-docs-btn">Generate Tailored CV & Cover Letter</button>
+        <button class="btn btn-secondary" id="autofill-btn">Auto-fill Application</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tracker Tab -->
+  <div id="tracker-tab" class="tab-content">
+    <div id="no-applications" class="job-card">
+      <div style="text-align: center; color: #6b7280;">
+        <div style="font-size: 32px; margin-bottom: 12px;">📋</div>
+        <div style="font-weight: 600; margin-bottom: 8px;">No Applications Yet</div>
+        <div style="font-size: 14px;">Your application history will appear here</div>
+      </div>
+    </div>
+
+    <div id="applications-list" class="hidden">
+      <!-- Applications will be dynamically added here -->
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

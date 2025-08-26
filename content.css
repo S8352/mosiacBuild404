@@ -1,0 +1,127 @@
+/* Job Copilot Browser Assistant - Content Script Styles */
+
+.job-copilot-highlight {
+  border: 2px solid #2563eb !important;
+  background-color: rgba(37, 99, 235, 0.1) !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
+.job-copilot-filled {
+  border: 2px solid #10b981 !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.job-copilot-new-question {
+  border: 2px solid #f59e0b !important;
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  position: relative !important;
+}
+
+.job-copilot-new-question::after {
+  content: "New question detected - Job Copilot will learn this!" !important;
+  position: absolute !important;
+  top: -30px !important;
+  left: 0 !important;
+  background: #f59e0b !important;
+  color: white !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  z-index: 10000 !important;
+  white-space: nowrap !important;
+}
+
+.job-copilot-overlay {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  z-index: 10000 !important;
+  max-width: 300px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.job-copilot-overlay h3 {
+  margin: 0 0 12px 0 !important;
+  color: #1f2937 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+.job-copilot-overlay p {
+  margin: 0 0 12px 0 !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.job-copilot-overlay button {
+  background: #2563eb !important;
+  color: white !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  margin-right: 8px !important;
+  transition: background-color 0.2s !important;
+}
+
+.job-copilot-overlay button:hover {
+  background: #1d4ed8 !important;
+}
+
+.job-copilot-overlay button.secondary {
+  background: #f3f4f6 !important;
+  color: #374151 !important;
+}
+
+.job-copilot-overlay button.secondary:hover {
+  background: #e5e7eb !important;
+}
+
+.job-copilot-progress {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 24px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+  z-index: 10001 !important;
+  text-align: center !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.job-copilot-progress-spinner {
+  width: 40px !important;
+  height: 40px !important;
+  border: 4px solid #f3f4f6 !important;
+  border-top: 4px solid #2563eb !important;
+  border-radius: 50% !important;
+  animation: job-copilot-spin 1s linear infinite !important;
+  margin: 0 auto 16px auto !important;
+}
+
+@keyframes job-copilot-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.job-copilot-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  z-index: 10000 !important;
+}

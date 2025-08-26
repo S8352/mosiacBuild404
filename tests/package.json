@@ -1,0 +1,26 @@
+{
+  "name": "job-copilot-tests",
+  "version": "1.0.0",
+  "description": "QA test suite for Job Copilot Browser Assistant",
+  "main": "test-runner.js",
+  "scripts": {
+    "test": "node test-runner.js",
+    "test:watch": "nodemon test-runner.js",
+    "test:coverage": "nyc node test-runner.js"
+  },
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "nyc": "^15.1.0"
+  },
+  "keywords": [
+    "testing",
+    "qa",
+    "browser-extension",
+    "job-application"
+  ],
+  "author": "Job Copilot Team",
+  "license": "MIT"
+}
