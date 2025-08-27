@@ -1,0 +1,15 @@
+{
+  "id": "4eec3e5d-74ae-4689-9284-01f592dafebb",
+  "type": "persistent",
+  "content": "Integration test memory",
+  "metadata": {
+    "created": "2025-08-27T12:09:13.685Z",
+    "updated": "2025-08-27T12:09:13.685Z",
+    "relevanceScore": 0.9,
+    "tags": [
+      "integration",
+      "test"
+    ],
+    "accessCount": 0
+  }
+}

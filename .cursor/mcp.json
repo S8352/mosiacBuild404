@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "memory-bank": {
+      "command": "npx",
+      "args": ["-y", "@allpepper/memory-bank-mcp@latest"],
+      "env": {
+        "MEMORY_BANK_ROOT": "./memory-bank",
+        "CURSOR_MEMORY_ENABLED": "true",
+        "CONTEXT_WINDOW_LIMIT": "128000"
+      }
+    }
+  }
+}
+

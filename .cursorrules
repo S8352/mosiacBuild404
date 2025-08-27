@@ -1,0 +1,145 @@
+# Memory Scaffolding Rules for Job Copilot
+
+## Memory Bank Usage Protocol
+
+### Always Execute First
+1. **Read Core Memory**: Always read `memory-bank/core/` files to understand project context
+2. **Check Session State**: Review `memory-bank/session/` directory for current task state
+3. **Review Persistent Patterns**: Consult `memory-bank/persistent/` for established patterns and conventions
+
+### Memory Operations Priority
+- **Store**: Save important decisions, patterns, user preferences, and architectural choices
+- **Retrieve**: Search memory before making recommendations or implementing features
+- **Update**: Modify existing memory blocks when new information emerges or patterns evolve
+- **Prune**: Remove outdated or irrelevant information to maintain memory efficiency
+
+### Context Engineering Principles
+- **Relevance Over Completeness**: Prioritize relevant context over complete history
+- **Token Efficiency**: Maintain token efficiency while preserving critical information
+- **Structured Organization**: Use consistent markdown formatting for memory organization
+- **Privacy First**: Always consider privacy implications when storing user-related data
+
+## Project-Specific Memory Guidelines
+
+### Job Copilot Context
+- **Chrome Extension Focus**: Always consider Manifest V3 compliance and content script limitations
+- **Privacy-First Approach**: Prefer local storage over cloud storage for user data
+- **AI Integration**: Consider OpenAI API costs and rate limits in all recommendations
+- **ATS Optimization**: Prioritize ATS-friendly document generation patterns
+
+### Development Patterns
+- **Service Architecture**: Follow established service-based patterns in `memory-bank/persistent/design-patterns.md`
+- **Coding Standards**: Adhere to conventions in `memory-bank/persistent/coding-standards.md`
+- **Project Conventions**: Follow naming and organization patterns in `memory-bank/persistent/project-conventions.md`
+
+## Memory Categories and Usage
+
+### Core Memory (Always in Context)
+- **Project Overview**: Current project goals, architecture decisions, and constraints
+- **Architecture**: System design, database schema, API endpoints
+- **User Preferences**: Development style, testing preferences, communication patterns
+
+### Persistent Memory (Long-term Storage)
+- **Coding Standards**: JavaScript patterns, Chrome extension standards, testing conventions
+- **Design Patterns**: Service layer, repository, factory, observer patterns
+- **Project Conventions**: File naming, API conventions, error handling
+
+### Session Memory (Current Context)
+- **Current Context**: Active development tasks, recent decisions, immediate focus
+- **Active Tasks**: Current sprint items, priorities, dependencies
+
+### External Memory (Retrievable Resources)
+- **API Documentation**: External service documentation and integration guides
+- **Reference Materials**: Best practices, tutorials, and external resources
+
+## Context Assembly Rules
+
+### Token Budget Allocation
+- **System Prompt**: 15% of context window
+- **Core Memory**: 25% of context window
+- **Recent Context**: 35% of context window
+- **Retrieved Memory**: 20% of context window
+- **Tool Definitions**: 5% of context window
+
+### Context Prioritization
+1. **Immediate Context**: Current task, recent messages, active files
+2. **Relevant Memory**: Past decisions related to current task
+3. **User Preferences**: Development style and project patterns
+4. **External Knowledge**: Documentation and reference materials
+
+## Memory Update Triggers
+
+### Automatic Updates
+- When implementing new features or patterns
+- When making architectural decisions
+- When encountering new user preferences
+- When resolving technical challenges
+
+### Manual Updates
+- When project requirements change
+- When coding standards evolve
+- When new best practices emerge
+- When user feedback indicates pattern changes
+
+## Quality Assurance
+
+### Memory Validation
+- Ensure all memory entries are accurate and up-to-date
+- Verify that patterns are consistent across the project
+- Check that decisions align with project goals and constraints
+- Validate that user preferences are respected
+
+### Memory Optimization
+- Remove duplicate or conflicting information
+- Compress similar memories into summaries
+- Archive outdated information when appropriate
+- Maintain token efficiency in context assembly
+
+## Integration with Development Workflow
+
+### Before Starting Work
+1. Read current session context
+2. Review relevant persistent memory
+3. Check active tasks and priorities
+4. Understand current architectural constraints
+
+### During Development
+1. Store important decisions and patterns
+2. Update memory with new learnings
+3. Reference established conventions
+4. Maintain consistency with project standards
+
+### After Completing Work
+1. Update session memory with progress
+2. Store new patterns or solutions
+3. Document architectural decisions
+4. Update active tasks status
+
+## Error Handling and Recovery
+
+### Memory System Failures
+- Fall back to basic context if memory system is unavailable
+- Use project README and inline documentation as backup
+- Maintain core project understanding even without memory system
+- Log memory system issues for debugging
+
+### Context Window Limitations
+- Prioritize most relevant information when context is limited
+- Use summaries for large memory blocks
+- Focus on immediate task requirements
+- Maintain core project context at minimum
+
+## Continuous Improvement
+
+### Memory System Evolution
+- Regularly review and update memory organization
+- Optimize context assembly algorithms
+- Improve relevance scoring based on usage patterns
+- Adapt to changing project requirements
+
+### Learning and Adaptation
+- Learn from successful context assemblies
+- Identify patterns in frequently accessed memory
+- Optimize memory storage based on usage frequency
+- Adapt to user's evolving development style
+

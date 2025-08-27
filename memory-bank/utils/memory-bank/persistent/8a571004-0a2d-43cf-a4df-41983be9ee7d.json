@@ -1,0 +1,15 @@
+{
+  "id": "8a571004-0a2d-43cf-a4df-41983be9ee7d",
+  "type": "persistent",
+  "content": "Persistent workflow test memory",
+  "metadata": {
+    "created": "2025-08-27T08:15:08.969Z",
+    "updated": "2025-08-27T08:15:08.969Z",
+    "relevanceScore": 1,
+    "tags": [
+      "workflow",
+      "persistent"
+    ],
+    "accessCount": 0
+  }
+}

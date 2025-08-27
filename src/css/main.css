@@ -1,0 +1,346 @@
+/* Job Copilot - Main Stylesheet */
+
+/* ===== IMPORT ORDER ===== */
+/* 1. Variables and Design Tokens */
+@import './variables.css';
+
+/* 2. Base Styles and Reset */
+@import './base.css';
+
+/* 3. Layout Utilities */
+@import './layout.css';
+
+/* 4. Component Styles */
+@import './components.css';
+
+/* ===== CONTENT SCRIPT STYLES ===== */
+/* Content script specific styles with !important for injection */
+.job-copilot-highlight {
+  border: 2px solid var(--primary-blue-light) !important;
+  background-color: var(--primary-blue-alpha) !important;
+  border-radius: var(--radius-sm) !important;
+  transition: all var(--transition-base) !important;
+}
+
+.job-copilot-filled {
+  border: 2px solid var(--success-green) !important;
+  background-color: rgba(99, 212, 113, 0.1) !important;
+}
+
+.job-copilot-new-question {
+  border: 2px solid var(--warning-orange) !important;
+  background-color: rgba(247, 181, 0, 0.1) !important;
+  position: relative !important;
+}
+
+.job-copilot-new-question::after {
+  content: "New question detected - Job Copilot will learn this!" !important;
+  position: absolute !important;
+  top: -30px !important;
+  left: 0 !important;
+  background: var(--warning-orange) !important;
+  color: var(--white) !important;
+  padding: var(--spacing-1) var(--spacing-2) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: var(--font-size-xs) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  z-index: 10000 !important;
+  white-space: nowrap !important;
+  font-family: var(--font-primary) !important;
+}
+
+.job-copilot-overlay {
+  position: fixed !important;
+  top: var(--spacing-5) !important;
+  right: var(--spacing-5) !important;
+  background: var(--white) !important;
+  border: 1px solid var(--border-gray) !important;
+  border-radius: var(--radius-md) !important;
+  padding: var(--spacing-4) !important;
+  box-shadow: var(--shadow-lg) !important;
+  z-index: 10000 !important;
+  max-width: 300px !important;
+  font-family: var(--font-primary) !important;
+}
+
+.job-copilot-overlay h3 {
+  margin: 0 0 var(--spacing-3) 0 !important;
+  color: var(--text-dark) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-semibold) !important;
+}
+
+.job-copilot-overlay p {
+  margin: 0 0 var(--spacing-3) 0 !important;
+  color: var(--text-muted) !important;
+  font-size: var(--font-size-sm) !important;
+  line-height: var(--line-height-normal) !important;
+}
+
+.job-copilot-overlay button {
+  background: var(--primary-blue) !important;
+  color: var(--white) !important;
+  border: none !important;
+  padding: var(--spacing-2) var(--spacing-4) !important;
+  border-radius: var(--radius-base) !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  cursor: pointer !important;
+  margin-right: var(--spacing-2) !important;
+  transition: background-color var(--transition-base) !important;
+  font-family: var(--font-primary) !important;
+}
+
+.job-copilot-overlay button:hover {
+  background: var(--primary-blue-dark) !important;
+}
+
+.job-copilot-overlay button.secondary {
+  background: var(--light-gray) !important;
+  color: var(--dark-gray) !important;
+}
+
+.job-copilot-overlay button.secondary:hover {
+  background: var(--cool-gray) !important;
+}
+
+.job-copilot-progress {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: var(--white) !important;
+  border-radius: var(--radius-md) !important;
+  padding: var(--spacing-6) !important;
+  box-shadow: var(--shadow-xl) !important;
+  z-index: 10001 !important;
+  text-align: center !important;
+  font-family: var(--font-primary) !important;
+}
+
+.job-copilot-progress-spinner {
+  width: 40px !important;
+  height: 40px !important;
+  border: 4px solid var(--light-gray) !important;
+  border-top: 4px solid var(--primary-blue) !important;
+  border-radius: var(--radius-full) !important;
+  animation: spin 1s linear infinite !important;
+  margin: 0 auto var(--spacing-4) auto !important;
+}
+
+.job-copilot-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  z-index: 10000 !important;
+}
+
+/* ===== EXTENSION-SPECIFIC BODY STYLES ===== */
+/* These styles apply to different contexts */
+
+/* Popup body styles */
+body.popup-body {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-5);
+}
+
+/* Demo/wireframe body styles */
+body.demo-body {
+  background: var(--bg-primary);
+  color: var(--dark-gray);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Extension popup compact body */
+body.extension-body {
+  width: var(--popup-width);
+  min-height: var(--popup-min-height);
+  margin: 0;
+  padding: 0;
+  background: var(--white);
+}
+
+/* ===== THEME VARIATIONS ===== */
+/* Light theme (default) - already defined */
+
+/* Dark theme (future implementation) */
+@media (prefers-color-scheme: dark) {
+  .dark-theme {
+    /* Dark theme variables would go here */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --white: #ffffff;
+    --dark-gray: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --border-gray: #404040;
+    --light-gray: #2d2d2d;
+  }
+}
+
+/* High contrast theme */
+.high-contrast {
+  --primary-blue: #0000ff;
+  --success-green: #008000;
+  --warning-orange: #ff8000;
+  --error-red: #ff0000;
+  --border-gray: #000000;
+  --text-muted: #000000;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* Optimize animations for better performance */
+.optimized-animations {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover {
+    transform: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .method-card:hover {
+    transform: none;
+  }
+}
+
+/* ===== BROWSER-SPECIFIC FIXES ===== */
+/* Chrome extension specific */
+@supports (-webkit-appearance: none) {
+  .form-select {
+    -webkit-appearance: none;
+  }
+}
+
+/* Firefox specific */
+@-moz-document url-prefix() {
+  .form-select {
+    -moz-appearance: none;
+  }
+}
+
+/* Safari specific */
+@supports (-webkit-touch-callout: none) {
+  .btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ===== DEBUG STYLES (DEVELOPMENT ONLY) ===== */
+/* These should be removed in production */
+.debug-mode * {
+  outline: 1px solid red;
+}
+
+.debug-mode .container {
+  outline: 2px solid blue;
+}
+
+.debug-mode .form-grid {
+  outline: 1px solid green;
+}
+
+/* ===== LOADING STATES ===== */
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-dropdown);
+}
+
+.loading::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-gray);
+  border-top: 2px solid var(--primary-blue);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-popover);
+}
+
+/* ===== ERROR STATES ===== */
+.error-state {
+  border-color: var(--error-red) !important;
+  background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+.error-boundary {
+  padding: var(--spacing-8);
+  text-align: center;
+  background: var(--light-gray);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-gray);
+}
+
+.error-boundary h2 {
+  color: var(--error-red);
+  margin-bottom: var(--spacing-4);
+}
+
+.error-boundary p {
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-6);
+}
+
+/* ===== SUCCESS STATES ===== */
+.success-state {
+  border-color: var(--success-green) !important;
+  background-color: rgba(99, 212, 113, 0.1) !important;
+}
+
+.success-message {
+  background: var(--success-green);
+  color: var(--white);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+/* ===== WARNING STATES ===== */
+.warning-state {
+  border-color: var(--warning-orange) !important;
+  background-color: rgba(247, 181, 0, 0.1) !important;
+}
+
+.warning-message {
+  background: var(--warning-orange);
+  color: var(--white);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}

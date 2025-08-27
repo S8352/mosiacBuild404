@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Copilot - Smart Onboarding</title>
-    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="onboarding.css">
 </head>
-<body class="popup-body">
+<body>
     <div class="onboarding-container">
         <div class="onboarding-header">
             <div class="logo">JC</div>
@@ -45,23 +45,27 @@
                 <div class="welcome-section">
                     <h2 class="welcome-title">Let's Build Your Professional Profile</h2>
                     <p class="welcome-subtitle">Choose how you'd like to create your profile</p>
+                    
                     <div class="input-method-cards">
                         <div class="method-card" onclick="selectMethod('upload')">
                             <div class="method-icon">📄</div>
                             <div class="method-title">Upload CV/Resume</div>
                             <div class="method-description">Quick setup by uploading your existing resume</div>
                         </div>
+                        
                         <div class="method-card" onclick="selectMethod('voice')">
                             <div class="method-icon">🎙️</div>
                             <div class="method-title">Voice Assistant</div>
                             <div class="method-description">Tell us about yourself using voice input</div>
                         </div>
+                        
                         <div class="method-card" onclick="selectMethod('manual')">
                             <div class="method-icon">⌨️</div>
                             <div class="method-title">Manual Entry</div>
                             <div class="method-description">Type in your information step by step</div>
                         </div>
                     </div>
+                    
                     <div id="upload-area" style="display: none; margin-top: 30px;">
                         <div style="border: 2px dashed var(--border-gray); border-radius: 12px; padding: 40px; text-align: center; background: var(--light-gray);">
                             <div style="font-size: 48px; margin-bottom: 15px;">📁</div>
@@ -81,6 +85,7 @@
                     <h2 class="section-title">
                         <span>👤</span> Basic Information
                     </h2>
+                    
                     <div class="form-grid">
                         <div class="form-group">
                             <label class="form-label">First Name <span class="required">*</span></label>
@@ -89,6 +94,7 @@
                                 <button class="voice-button" onclick="startVoiceInput('firstName')">🎤</button>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="form-label">Last Name <span class="required">*</span></label>
                             <div class="voice-input-wrapper">
@@ -96,15 +102,18 @@
                                 <button class="voice-button" onclick="startVoiceInput('lastName')">🎤</button>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="form-label">Email <span class="required">*</span></label>
                             <input type="email" class="form-input" id="email" placeholder="your.email@example.com">
                             <span class="help-text">We'll use this for application submissions</span>
                         </div>
+                        
                         <div class="form-group">
                             <label class="form-label">Phone Number <span class="required">*</span></label>
                             <input type="tel" class="form-input" id="phone" placeholder="+1 (555) 123-4567">
                         </div>
+                        
                         <div class="form-group">
                             <label class="form-label">Location</label>
                             <div class="voice-input-wrapper">
@@ -112,11 +121,13 @@
                                 <button class="voice-button" onclick="startVoiceInput('location')">🎤</button>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="form-label">LinkedIn URL</label>
                             <input type="url" class="form-input" id="linkedin" placeholder="linkedin.com/in/yourprofile">
                         </div>
                     </div>
+                    
                     <div class="form-section" style="margin-top: 30px;">
                         <h3 style="font-size: 18px; margin-bottom: 15px;">Professional Headline</h3>
                         <div class="voice-input-wrapper">
@@ -125,6 +136,7 @@
                         </div>
                         <span class="help-text">A brief, impactful title that describes your professional identity</span>
                     </div>
+                    
                     <div class="form-section" style="margin-top: 30px;">
                         <h3 style="font-size: 18px; margin-bottom: 15px;">Professional Summary</h3>
                         <div class="voice-input-wrapper">
@@ -142,12 +154,14 @@
                     <h2 class="section-title">
                         <span>💼</span> Work Experience
                     </h2>
+                    
                     <div id="experience-container">
                         <div class="experience-card">
                             <div class="card-header">
                                 <h4>Position 1</h4>
                                 <button class="btn btn-secondary" onclick="removeExperience(this)" style="padding: 6px 12px; font-size: 14px;">Remove</button>
                             </div>
+                            
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label class="form-label">Job Title <span class="required">*</span></label>
@@ -156,6 +170,7 @@
                                         <button class="voice-button" onclick="startVoiceInput('jobTitle')">🎤</button>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="form-label">Company <span class="required">*</span></label>
                                     <div class="voice-input-wrapper">
@@ -163,10 +178,12 @@
                                         <button class="voice-button" onclick="startVoiceInput('company')">🎤</button>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="form-label">Start Date</label>
                                     <input type="month" class="form-input">
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="form-label">End Date</label>
                                     <input type="month" class="form-input">
@@ -175,6 +192,7 @@
                                     </label>
                                 </div>
                             </div>
+                            
                             <div class="form-group" style="margin-top: 15px;">
                                 <label class="form-label">Key Achievements & Responsibilities</label>
                                 <div class="voice-input-wrapper">
@@ -185,11 +203,14 @@
                             </div>
                         </div>
                     </div>
+                    
                     <button class="btn btn-outline" onclick="addExperience()" style="margin-top: 20px;">
                         <span>+</span> Add Another Position
                     </button>
+                    
                     <div class="form-section" style="margin-top: 40px;">
                         <h3 style="font-size: 18px; margin-bottom: 15px;">Education</h3>
+                        
                         <div class="experience-card">
                             <div class="form-grid">
                                 <div class="form-group">
@@ -199,6 +220,7 @@
                                         <button class="voice-button" onclick="startVoiceInput('degree')">🎤</button>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="form-label">Field of Study</label>
                                     <div class="voice-input-wrapper">
@@ -206,6 +228,7 @@
                                         <button class="voice-button" onclick="startVoiceInput('field')">🎤</button>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="form-label">Institution</label>
                                     <div class="voice-input-wrapper">
@@ -213,9 +236,10 @@
                                         <button class="voice-button" onclick="startVoiceInput('institution')">🎤</button>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="form-label">Graduation Year</label>
-                                    <input type="number" class="form-input" placeholder="2020" min="1950" max="2030">
+                                    <input type="number" class="form-input" placeholder="2023" min="1950" max="2030">
                                 </div>
                             </div>
                         </div>
@@ -229,50 +253,29 @@
                     <h2 class="section-title">
                         <span>🛠️</span> Skills & Expertise
                     </h2>
-                    <div class="form-section">
+                    
+                    <div class="form-section" style="margin-bottom: 30px;">
                         <h3 style="font-size: 18px; margin-bottom: 15px;">Technical Skills</h3>
                         <div class="skills-input-container" id="technical-skills">
                             <input type="text" class="add-skill-input" placeholder="Add a skill (e.g., JavaScript)" onkeypress="addSkill(event, 'technical-skills')">
                         </div>
-                        <span class="help-text">Add programming languages, frameworks, tools, and technologies</span>
+                        <span class="help-text">Press Enter to add skills. Popular: JavaScript, Python, React, Node.js, AWS</span>
                     </div>
                     
-                    <div class="form-section" style="margin-top: 30px;">
+                    <div class="form-section" style="margin-bottom: 30px;">
                         <h3 style="font-size: 18px; margin-bottom: 15px;">Soft Skills</h3>
                         <div class="skills-input-container" id="soft-skills">
                             <input type="text" class="add-skill-input" placeholder="Add a skill (e.g., Leadership)" onkeypress="addSkill(event, 'soft-skills')">
                         </div>
-                        <span class="help-text">Add interpersonal skills, communication, leadership, etc.</span>
+                        <span class="help-text">Press Enter to add skills. Popular: Leadership, Communication, Problem Solving</span>
                     </div>
                     
-                    <div class="form-section" style="margin-top: 30px;">
+                    <div class="form-section">
                         <h3 style="font-size: 18px; margin-bottom: 15px;">Languages</h3>
                         <div class="skills-input-container" id="languages">
                             <input type="text" class="add-skill-input" placeholder="Add a language (e.g., English)" onkeypress="addSkill(event, 'languages')">
                         </div>
-                        <span class="help-text">Add languages you speak, read, or write</span>
-                    </div>
-                    
-                    <div class="form-section" style="margin-top: 30px;">
-                        <h3 style="font-size: 18px; margin-bottom: 15px;">Certifications</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label">Certification Name</label>
-                                <input type="text" class="form-input" placeholder="e.g., AWS Certified Solutions Architect">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Issuing Organization</label>
-                                <input type="text" class="form-input" placeholder="e.g., Amazon Web Services">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Issue Date</label>
-                                <input type="month" class="form-input">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Expiry Date</label>
-                                <input type="month" class="form-input">
-                            </div>
-                        </div>
+                        <span class="help-text">Press Enter to add languages. Include proficiency level if needed</span>
                     </div>
                 </div>
             </div>
@@ -282,41 +285,22 @@
                 <div class="completion-summary">
                     <div class="completion-icon">✅</div>
                     <h2 style="color: var(--primary-blue); margin-bottom: 20px;">Profile Complete!</h2>
-                    <p style="color: #666; margin-bottom: 30px; font-size: 16px;">
-                        Your professional profile has been created successfully. Job Copilot will now use this information to:
-                    </p>
-                    
-                    <div style="text-align: left; max-width: 400px; margin: 0 auto 30px;">
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="width: 24px; height: 24px; background: var(--success-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; color: white; font-size: 12px;">✓</div>
-                            <span>Generate ATS-optimized resumes</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="width: 24px; height: 24px; background: var(--success-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; color: white; font-size: 12px;">✓</div>
-                            <span>Create personalized cover letters</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="width: 24px; height: 24px; background: var(--success-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; color: white; font-size: 12px;">✓</div>
-                            <span>Auto-fill job applications</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="width: 24px; height: 24px; background: var(--success-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; color: white; font-size: 12px;">✓</div>
-                            <span>Track your applications</span>
-                        </div>
-                    </div>
+                    <p style="color: #666; margin-bottom: 30px; font-size: 18px;">Your professional profile has been successfully created and saved securely.</p>
                     
                     <div class="profile-score">Profile Score: 95%</div>
                     
-                    <p style="color: #666; font-size: 14px; margin-bottom: 30px;">
-                        Your data is encrypted and stored locally for maximum privacy and security.
-                    </p>
+                    <div style="background: var(--light-gray); padding: 20px; border-radius: 12px; margin: 30px 0;">
+                        <h3 style="margin-bottom: 15px;">What's Next?</h3>
+                        <ul style="text-align: left; color: #666;">
+                            <li style="margin-bottom: 8px;">🎯 Job Copilot will now analyze job postings for you</li>
+                            <li style="margin-bottom: 8px;">📝 Generate tailored CVs and cover letters automatically</li>
+                            <li style="margin-bottom: 8px;">🚀 Auto-fill job applications with your information</li>
+                            <li style="margin-bottom: 8px;">📊 Track your application progress and success rates</li>
+                        </ul>
+                    </div>
                     
-                    <button class="btn btn-primary" onclick="completeOnboarding()" style="margin-bottom: 15px;">
-                        Start Using Job Copilot
-                    </button>
-                    
-                    <button class="btn btn-outline" onclick="previousStep()">
-                        Edit Profile
+                    <button class="btn btn-success" onclick="completeOnboarding()" style="font-size: 18px; padding: 15px 30px;">
+                        🚀 Start Using Job Copilot
                     </button>
                 </div>
             </div>
@@ -324,30 +308,30 @@
         
         <!-- Navigation Buttons -->
         <div class="btn-group" id="navigation-buttons" style="display: none;">
-            <button class="btn btn-secondary" id="prev-btn" onclick="previousStep()">← Previous</button>
-            <button class="btn btn-primary" id="next-btn" onclick="nextStep()">Next →</button>
+            <button class="btn btn-secondary" onclick="previousStep()" id="prev-btn">← Previous</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="next-btn">Next →</button>
         </div>
     </div>
     
     <!-- Voice Assistant Panel -->
     <div class="voice-assistant-panel" id="voice-panel">
         <div class="voice-panel-header">
-            <span>🎤 Voice Assistant</span>
+            <span>🎙️ Voice Assistant</span>
             <button onclick="closeVoicePanel()" style="background: none; border: none; color: white; cursor: pointer; font-size: 18px;">×</button>
         </div>
         <div class="voice-panel-content">
-            <div class="voice-wave" id="voice-wave" style="display: none;">
+            <div class="voice-wave" id="voice-wave">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
             </div>
-            <div class="transcript" id="transcript">
-                Click the microphone button to start recording...
-            </div>
+            <div class="transcript" id="transcript">Click the microphone button to start recording...</div>
             <div class="voice-suggestions" id="voice-suggestions">
-                <!-- Suggestions will appear here -->
+                <div class="suggestion-chip" onclick="useSuggestion('Software Engineer')">Software Engineer</div>
+                <div class="suggestion-chip" onclick="useSuggestion('Project Manager')">Project Manager</div>
+                <div class="suggestion-chip" onclick="useSuggestion('Data Analyst')">Data Analyst</div>
             </div>
         </div>
     </div>
@@ -355,6 +339,6 @@
     <!-- Floating Help Button -->
     <div class="floating-help" onclick="showHelp()">?</div>
     
-    <script src="src/js/main.js" type="module"></script>
+    <script src="onboarding.js"></script>
 </body>
 </html>

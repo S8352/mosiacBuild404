@@ -47,7 +47,7 @@ A smart, privacy-first browser extension that streamlines job applications with 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd windsurf-project
+   cd mosaicBuild404
    ```
 
 2. **Set up backend**
