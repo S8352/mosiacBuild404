@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Processing Feedback Test</title>
+    <link rel="stylesheet" href="src/css/variables.css">
+    <link rel="stylesheet" href="src/css/components.css">
+    <style>
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            margin: 0;
+            padding: 20px;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+        }
+        .test-button {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: var(--primary-blue-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Resume Processing Feedback Test</h1>
+        <p>Click the button below to test the resume processing feedback modal:</p>
+        
+        <button class="test-button" onclick="showFeedbackModal()">
+            Show Resume Processing Feedback
+        </button>
+        
+        <button class="test-button" onclick="showHighScoreFeedback()">
+            Show High Score Feedback (95%)
+        </button>
+        
+        <button class="test-button" onclick="showLowScoreFeedback()">
+            Show Low Score Feedback (45%)
+        </button>
+    </div>
+
+    <script>
+        // Mock feedback data for testing
+        const mockFeedback = {
+            score: 85,
+            summary: {
+                totalExperience: 4.5,
+                skillCount: { technical: 5, soft: 3, total: 8 },
+                educationLevel: 'Bachelor of Science',
+                certifications: 1,
+                projects: 1,
+                achievements: 2
+            },
+            extractedFields: {
+                basicInfo: { name: true, email: true, phone: true, location: true, headline: true },
+                experience: { count: 1, hasCurrent: true, hasAchievements: true },
+                education: { count: 1, hasGPA: true },
+                skills: { technical: 5, soft: 3, languages: 2 },
+                additional: { certifications: 1, projects: 1, achievements: 2 }
+            },
+            missingFields: ['Professional Summary'],
+            suggestions: [
+                'Add a professional summary to make your profile more compelling',
+                'Consider adding more work experience entries',
+                'Add more quantifiable achievements with specific numbers and percentages'
+            ],
+            confidence: 92,
+            statistics: {
+                textLength: 2500,
+                wordCount: 450,
+                extractedFields: 12,
+                totalFields: 15,
+                experienceYears: 4.5,
+                skillDiversity: { total: 8, unique: 8, diversity: 100 }
+            }
+        };
+
+        const highScoreFeedback = {
+            ...mockFeedback,
+            score: 95,
+            confidence: 98,
+            missingFields: [],
+            suggestions: [
+                'Your profile is excellent! Consider adding more certifications to stand out further.'
+            ]
+        };
+
+        const lowScoreFeedback = {
+            ...mockFeedback,
+            score: 45,
+            confidence: 65,
+            missingFields: ['Full Name', 'Email Address', 'Phone Number', 'Work Experience', 'Education', 'Skills'],
+            suggestions: [
+                'Add your full name and contact information',
+                'Include your work experience history',
+                'Add your educational background',
+                'List your technical and soft skills',
+                'Consider adding a professional summary'
+            ]
+        };
+
+        function showFeedbackModal(feedback = mockFeedback) {
+            const modal = document.createElement('div');
+            modal.className = 'feedback-modal';
+            modal.innerHTML = createFeedbackHTML(feedback);
+            
+            document.body.appendChild(modal);
+            setupFeedbackModalListeners(modal);
+        }
+
+        function showHighScoreFeedback() {
+            showFeedbackModal(highScoreFeedback);
+        }
+
+        function showLowScoreFeedback() {
+            showFeedbackModal(lowScoreFeedback);
+        }
+
+        function createFeedbackHTML(feedback) {
+            return `
+                <div class="feedback-overlay">
+                    <div class="feedback-container">
+                        <div class="feedback-header">
+                            <h2>📄 Resume Processing Complete</h2>
+                            <button class="close-feedback-btn">×</button>
+                        </div>
+                        
+                        <div class="feedback-content">
+                            <!-- Visual Score Display -->
+                            <div class="feedback-section">
+                                <div class="score-display">
+                                    <div class="score-circle score-${getScoreClass(feedback.score)}">
+                                        <span class="score-number">${feedback.score}%</span>
+                                        <span class="score-label">Success Rate</span>
+                                    </div>
+                                    <div class="confidence-indicator">
+                                        <span class="confidence-label">Confidence:</span>
+                                        <span class="confidence-value">${feedback.confidence}%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comprehensive Summary -->
+                            <div class="feedback-section">
+                                <h3>📊 Summary</h3>
+                                <div class="summary-grid">
+                                    <div class="summary-item">
+                                        <span class="summary-icon">💼</span>
+                                        <span class="summary-value">${feedback.summary.totalExperience} years</span>
+                                        <span class="summary-label">Experience</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-icon">🛠️</span>
+                                        <span class="summary-value">${feedback.summary.skillCount.total}</span>
+                                        <span class="summary-label">Skills</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-icon">🎓</span>
+                                        <span class="summary-value">${feedback.summary.educationLevel}</span>
+                                        <span class="summary-label">Education</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-icon">🏆</span>
+                                        <span class="summary-value">${feedback.summary.achievements}</span>
+                                        <span class="summary-label">Achievements</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detailed Extraction Report -->
+                            <div class="feedback-section">
+                                <h3>✅ Extracted Information</h3>
+                                <div class="extracted-info">
+                                    ${createExtractedInfoHTML(feedback.extractedFields)}
+                                </div>
+                            </div>
+
+                            <!-- Missing Information Alerts -->
+                            ${feedback.missingFields.length > 0 ? `
+                                <div class="feedback-section">
+                                    <h3>⚠️ Missing Information</h3>
+                                    <div class="missing-fields">
+                                        ${feedback.missingFields.map(field => `
+                                            <div class="missing-field">
+                                                <span class="missing-icon">⚠️</span>
+                                                <span>${field}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                            <!-- Suggestions -->
+                            ${feedback.suggestions.length > 0 ? `
+                                <div class="feedback-section">
+                                    <h3>💡 Suggestions for Improvement</h3>
+                                    <div class="suggestions-list">
+                                        ${feedback.suggestions.map(suggestion => `
+                                            <div class="suggestion-item">
+                                                <span class="suggestion-icon">💡</span>
+                                                <span>${suggestion}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                            <!-- Detailed Statistics -->
+                            <div class="feedback-section">
+                                <h3>📈 Detailed Statistics</h3>
+                                <div class="statistics-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Text Length:</span>
+                                        <span class="stat-value">${feedback.statistics.textLength.toLocaleString()} characters</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Word Count:</span>
+                                        <span class="stat-value">${feedback.statistics.wordCount.toLocaleString()} words</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Fields Extracted:</span>
+                                        <span class="stat-value">${feedback.statistics.extractedFields}/${feedback.statistics.totalFields}</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Skill Diversity:</span>
+                                        <span class="stat-value">${feedback.statistics.skillDiversity.diversity}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feedback-actions">
+                            <button class="btn btn-secondary" id="edit-extracted-data-btn">
+                                Edit Extracted Data
+                            </button>
+                            <button class="btn btn-primary" id="continue-with-data-btn">
+                                Continue with Extracted Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createExtractedInfoHTML(extractedFields) {
+            return `
+                <div class="extracted-grid">
+                    <div class="extracted-category">
+                        <h4>👤 Basic Information</h4>
+                        <div class="extracted-items">
+                            ${Object.entries(extractedFields.basicInfo).map(([field, extracted]) => `
+                                <div class="extracted-item ${extracted ? 'extracted' : 'missing'}">
+                                    <span class="item-icon">${extracted ? '✅' : '❌'}</span>
+                                    <span class="item-label">${formatFieldName(field)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="extracted-category">
+                        <h4>💼 Work Experience</h4>
+                        <div class="extracted-items">
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.experience.count} positions</span>
+                            </div>
+                            <div class="extracted-item ${extractedFields.experience.hasCurrent ? 'extracted' : 'missing'}">
+                                <span class="item-icon">${extractedFields.experience.hasCurrent ? '✅' : '❌'}</span>
+                                <span class="item-label">Current position</span>
+                            </div>
+                            <div class="extracted-item ${extractedFields.experience.hasAchievements ? 'extracted' : 'missing'}">
+                                <span class="item-icon">${extractedFields.experience.hasAchievements ? '✅' : '❌'}</span>
+                                <span class="item-label">Achievements</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="extracted-category">
+                        <h4>🎓 Education</h4>
+                        <div class="extracted-items">
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.education.count} institutions</span>
+                            </div>
+                            <div class="extracted-item ${extractedFields.education.hasGPA ? 'extracted' : 'missing'}">
+                                <span class="item-icon">${extractedFields.education.hasGPA ? '✅' : '❌'}</span>
+                                <span class="item-label">GPA information</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="extracted-category">
+                        <h4>🛠️ Skills</h4>
+                        <div class="extracted-items">
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.skills.technical} technical skills</span>
+                            </div>
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.skills.soft} soft skills</span>
+                            </div>
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.skills.languages} languages</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="extracted-category">
+                        <h4>🏆 Additional</h4>
+                        <div class="extracted-items">
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.additional.certifications} certifications</span>
+                            </div>
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.additional.projects} projects</span>
+                            </div>
+                            <div class="extracted-item extracted">
+                                <span class="item-icon">✅</span>
+                                <span class="item-label">${extractedFields.additional.achievements} achievements</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatFieldName(field) {
+            const fieldNames = {
+                name: 'Full Name',
+                email: 'Email Address',
+                phone: 'Phone Number',
+                location: 'Location',
+                headline: 'Professional Headline'
+            };
+            return fieldNames[field] || field;
+        }
+
+        function getScoreClass(score) {
+            if (score >= 90) return 'excellent';
+            if (score >= 80) return 'good';
+            if (score >= 70) return 'fair';
+            return 'poor';
+        }
+
+        function setupFeedbackModalListeners(modal) {
+            // Close button
+            const closeBtn = modal.querySelector('.close-feedback-btn');
+            closeBtn.addEventListener('click', () => {
+                modal.remove();
+            });
+
+            // Edit extracted data button
+            const editBtn = modal.querySelector('#edit-extracted-data-btn');
+            editBtn.addEventListener('click', () => {
+                alert('Edit functionality would open the profile form');
+                modal.remove();
+            });
+
+            // Continue with data button
+            const continueBtn = modal.querySelector('#continue-with-data-btn');
+            continueBtn.addEventListener('click', () => {
+                alert('Continue functionality would proceed with the extracted data');
+                modal.remove();
+            });
+
+            // Close on overlay click
+            const overlay = modal.querySelector('.feedback-overlay');
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    modal.remove();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
